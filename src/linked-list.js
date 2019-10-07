@@ -53,34 +53,62 @@ class LinkedList {
       }
 
     insertAt(index, data) {
-      let count=0;
+      let count=1;
       let curNote=this.head;
-      let node=new Node();
+      
+      class Node{
+         constructor(data){
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+         }
+        }
+      let node=new Node(data);
+      
       if(index==0){
         this.head.prev=node;
         node.next=this.head;
         this.head=node;
         }else{
+          
         while(curNote){
+          
           curNote=curNote.next;
+          
           if(index==count){
             node.prev=curNote.prev;
             curNote.prev.next=node;
             node.next=curNote;
             curNote.prev=node;
-            
             }
-                  
+            count++;      
           }  
           
         }
+      }
+
+    isEmpty() {
+      if(this.head){
+        return true;
+      }else{
+        return false;
+        }
+          
+        }
+      
+
+    clear() {
+            
+      while(this.tail.prev){
+      this.tail=this.tail.prev;
+      this.tail.next.data=null;
+      this.tail.next.prev=null;
+      this.tail.next=null;
+      
+      }
       
       
       }
-
-    isEmpty() {}
-
-    clear() {}
 
     deleteAt(index) {}
 
