@@ -88,7 +88,7 @@ class LinkedList {
       }
 
     isEmpty() {
-      if(this.head){
+      if(!this.head){
         return true;
       }else{
         return false;
@@ -98,23 +98,83 @@ class LinkedList {
       
 
     clear() {
-            
+      
+      console.log(this.tail.data);
+      
       while(this.tail.prev){
-      this.tail=this.tail.prev;
-      this.tail.next.data=null;
-      this.tail.next.prev=null;
-      this.tail.next=null;
+        let current=this.tail.prev;
+        current.next=null;
+        this.tail=current; 
+        }
+      if(!this.tail.prev&&this.tail.data){
+        this.tail=null;
+        this.head=null;
+        
+        
+        }     
+      }
+
+    deleteAt(index) {
+      let count=0;
+      let node=this.root;
+      if(index==0){
+        this.root=this.root.next;
+        this.root.prev=null;
+        }else{
+      
+      
+      while(node.data){
+        if(count===index){
+          node.prev.next=node.next;
+          node.next.prev=node.prev;
+          break;
+          }
+        count++;
+        node=node.next;
+      }  
+      }
+      }
+
+    reverse() {
+  let curNode=this.root;
+  let prevNode=null;
+  
+  while(curNode){
+   let nextNode=curNode.next;
+   curNode.next=prevNode;
+   curNode.prev=nextNode;
+   
+   prevNode=curNode;
+   curNode=nextNode;
+  }
+  this.tail=this.root;
+  this.root=prevNode;
+
+
       
       }
+
+    indexOf(data) {
+      let count=0;
+      let curNode=this.root;
       
+      while(curNode){
+        
+        
+        if(curNode.data==data){
+          return count;
+          }
+        
+        curNode=curNode.next;
+        count++;
+        
+    }
       
-      }
-
-    deleteAt(index) {}
-
-    reverse() {}
-
-    indexOf(data) {}
+    return -1;  
+    }
+    
+     
+    
 }
 
 module.exports = LinkedList;
