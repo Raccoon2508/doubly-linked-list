@@ -4,6 +4,7 @@ class LinkedList {
     constructor() {
       this.root=null;
       this.tail=null;
+      
       }
 
     append(data) {
@@ -21,8 +22,8 @@ class LinkedList {
         this.tail=node;
         }else{
         node.prev=this.tail;
-        this.root.next=node;
-        this.root=node;
+        this.tail.next=node;
+        this.tail=node;
           
         }
       }
@@ -32,11 +33,50 @@ class LinkedList {
       
       }
 
-    tail() {}
+    tail() {
+      return this.tail.data;
+      }
 
-    at(index) {}
+    at(index) {
+      let count=0;
+      let node=this.root;
+      while(node.data){
+        
+        if(count===index){
+          return node.data}
+        count++;
+        node=node.next;
+        
+      }
+      return null;
+      
+      }
 
-    insertAt(index, data) {}
+    insertAt(index, data) {
+      let count=0;
+      let curNote=this.head;
+      let node=new Node();
+      if(index==0){
+        this.head.prev=node;
+        node.next=this.head;
+        this.head=node;
+        }else{
+        while(curNote){
+          curNote=curNote.next;
+          if(index==count){
+            node.prev=curNote.prev;
+            curNote.prev.next=node;
+            node.next=curNote;
+            curNote.prev=node;
+            
+            }
+                  
+          }  
+          
+        }
+      
+      
+      }
 
     isEmpty() {}
 
