@@ -1,11 +1,36 @@
 const Node = require('./node');
 
 class LinkedList {
-    constructor() {}
+    constructor() {
+      this.root=null;
+      this.tail=null;
+      }
 
-    append(data) {}
+    append(data) {
+       class Node{
+         constructor(data){
+        this.data=data;
+        this.next=null;
+        this.prev=null;
+         }
+        }
+      
+      let node=new Node(data);
+      if(!this.root){
+        this.root=node;
+        this.tail=node;
+        }else{
+        node.prev=this.tail;
+        this.root.next=node;
+        this.root=node;
+          
+        }
+      }
 
-    head() {}
+    head() {
+      return this.root.data;
+      
+      }
 
     tail() {}
 
