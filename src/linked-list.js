@@ -103,7 +103,6 @@ isEmpty() {
   }else{
     return false;
     }
-      
     }
   
 
@@ -189,12 +188,9 @@ print(){
     console.log(cur.data);
     cur=cur.next;
   }
-    
-  
 }
 
  
 
 }
-
 module.exports = LinkedList;
